@@ -1,0 +1,72 @@
+#Before beginning scraping process one must create a Twitter Developer Account and generate unique access tokens, consumer key. This is essential for scrapping of the tweets.
+(written on pycharm)
+
+
+#import packages 
+import json
+import tweepy
+import os
+
+**#function to print different entities of the tweet**
+def printtweetdata(n, ith_tweet,scraped_data):
+    d = {"tweet scrapped": n, "username": ith_tweet[0], "description": ith_tweet[1], "location": ith_tweet[2],
+         "totaltweet": ith_tweet[3], "hashtag used": ith_tweet[4], "tweet text": ith_tweet[5]}
+    print(f"tweet scrapped{n}:")
+    print(f"username:{ith_tweet[0]}")
+    print(f"description:{ith_tweet[1]}")
+    print(f"location:{ith_tweet[2]}")
+    print(f"totaltweet:{ith_tweet[3]}")
+    print(f"hashtag used:{ith_tweet[4]}")
+    print(f"tweet text:{ith_tweet[5]}")
+    scraped_data.append(d)
+    
+**#storing in output json file**
+    if not os.path.isdir('output'):
+        os.mkdir('output')
+    with open(f'output/scraped_data.json', 'w') as outfile:
+        json.dump(scraped_data, outfile, indent=4)
+
+**#function to scrape different entities of the tweet**
+def scrape(words, numtweet, scraped_data):
+    tweets = tweepy.Cursor(api.search_tweets, q=words, lang="en", tweet_mode='extended'
+                           ).items(numtweet)
+    list_tweets = [tweet for tweet in tweets]
+    i = 1
+    for tweet in list_tweets:
+        username = tweet.user.screen_name
+        description = tweet.user.description
+        location = tweet.user.location
+        totaltweet = tweet.user.statuses_count
+        hashtags = tweet.entities['hashtags']
+
+        try:
+            text = tweet.retweeted_status.text
+        except AttributeError:
+            text = tweet.full_text
+        hashtext = list()
+        for j in range(0, len(hashtags)):
+            hashtext.append(hashtags[j]['text'])
+        ith_tweet = [username, description, location, totaltweet, hashtext,text]
+
+        printtweetdata(i, ith_tweet, scraped_data)
+        i = i + 1
+
+**#Accessing Twitter devoloper account and using access_token, acces_token secret,consumer_key, consumer_secret for twitter to initiate scrapping of tweets**
+if __name__ == '__main__':
+    access_token = " "
+    access_token_secret = " "
+    consumer_key = ""
+    consumer_secret = " "
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth)
+    print("enter twitter hashtag")
+    words = input()
+    print("enter number of tweets to be scraped")
+    numtweet = int(input())
+    scraped_data = []
+    print("fetching tweets")
+    scrape(words, numtweet, scraped_data)
+    print('scraping has completed')
+
+**Output will appear in a json output folder which can be then extracted on excel or any other file type for further analysis**
