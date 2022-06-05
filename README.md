@@ -1,2 +1,8 @@
 # Complete_Sentiment_Analysis-of-twitter-data
-All the codes required for sentiment analysis- extracting tweets from twitter API, pre-processing of data, data visualization, classification/tagging using textblob &amp; vader classifier, training data using ML algorithms , N-grams analysis
+All the codes required for sentiment analysis- 
+1.extracting tweets from twitter API
+2.pre-processing of data
+3.data visualization
+4.classification/tagging using textblob & vader classifier
+5.training data using ML algorithms 
+6.N-grams analysis
