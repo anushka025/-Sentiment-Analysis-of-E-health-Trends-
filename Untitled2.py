@@ -1,0 +1,68 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# Function to generate ngrams
+
+# In[ ]:
+
+
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+def generate_N_grams(text,ngram=1):
+  words=[word for word in text.split(" ") if word not in set(stopwords.words('english'))]  
+  print("Sentence after removing stopwords:",words)
+  temp=zip(*[words[i:] for i in range(0,ngram)])
+  ans=[' '.join(ngram) for ngram in temp]
+  return ans
+
+
+from collections import defaultdict
+positiveValues=defaultdict(int)
+negativeValues=defaultdict(int)
+neutralValues=defaultdict(int)
+#get the count of every word in both the columns of df_train and df_test dataframes
+#get the count of every word in both the columns of df_train and df_test dataframes where sentiment="positive"
+
+for text in df_train[df_train.Analysis=="Positive"].clean_tweets:
+  for word in generate_N_grams(text): #for bigram: replace with (text,2), for trigram:replace with(text,3)
+    positiveValues[word]+=1
+    
+#get the count of every word in both the columns of df_train and df_test dataframes where sentiment="negative"
+for text in df_train[df_train.Analysis=="Negative"].clean_tweets:
+  for word in generate_N_grams(text):
+    negativeValues[word]+=1
+    
+#get the count of every word in both the columns of df_train and df_test dataframes where sentiment="neutral"
+for text in df_train[df_train.Analysis=="Neutral"].clean_tweets:
+  for word in generate_N_grams(text):
+    neutralValues[word]+=1
+#focus on more frequently occuring words for every sentiment=>
+#sort in DO wrt 2nd column in each of positiveValues,negativeValues and neutralValues
+
+df_positive=pd.DataFrame(sorted(positiveValues.items(),key=lambda x:x[1],reverse=True))
+df_negative=pd.DataFrame(sorted(negativeValues.items(),key=lambda x:x[1],reverse=True))
+df_neutral=pd.DataFrame(sorted(neutralValues.items(),key=lambda x:x[1],reverse=True))
+pd1=df_positive[0][:10]
+pd2=df_positive[1][:10]
+ned1=df_negative[0][:10]
+ned2=df_negative[1][:10]
+nud1=df_neutral[0][:10]
+nud2=df_neutral[1][:10]  #keep changing dataframes names for bigram/trigram
+
+
+# PLOT for UNIGRAM/BIGRAM/TRIGRAM analysis
+
+# In[ ]:
+
+
+
+plt.figure(1,figsize=(16,4))
+plt.bar(pd1,pd2, color ='green',
+        width = 0.4) #change the dataframes to get graphs for negative and nuetral
+plt.xlabel("Words in positive dataframe")
+plt.ylabel("Count")
+plt.title("Top 10 words in positive dataframe-UNIGRAM ANALYSIS")
+plt.savefig("positive-unigram.png")
+plt.show()
+
