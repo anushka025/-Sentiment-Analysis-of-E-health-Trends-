@@ -3,7 +3,6 @@
 
 # Function to generate ngrams
 
-# In[ ]:
 
 
 import nltk
@@ -16,12 +15,12 @@ def generate_N_grams(text,ngram=1):
   ans=[' '.join(ngram) for ngram in temp]
   return ans
 
-
 from collections import defaultdict
 positiveValues=defaultdict(int)
 negativeValues=defaultdict(int)
 neutralValues=defaultdict(int)
 #get the count of every word in both the columns of df_train and df_test dataframes
+
 #get the count of every word in both the columns of df_train and df_test dataframes where sentiment="positive"
 
 for text in df_train[df_train.Analysis=="Positive"].clean_tweets:
@@ -34,10 +33,12 @@ for text in df_train[df_train.Analysis=="Negative"].clean_tweets:
     negativeValues[word]+=1
     
 #get the count of every word in both the columns of df_train and df_test dataframes where sentiment="neutral"
+
 for text in df_train[df_train.Analysis=="Neutral"].clean_tweets:
   for word in generate_N_grams(text):
     neutralValues[word]+=1
 #focus on more frequently occuring words for every sentiment=>
+
 #sort in DO wrt 2nd column in each of positiveValues,negativeValues and neutralValues
 
 df_positive=pd.DataFrame(sorted(positiveValues.items(),key=lambda x:x[1],reverse=True))
@@ -51,11 +52,7 @@ nud1=df_neutral[0][:10]
 nud2=df_neutral[1][:10]  #keep changing dataframes names for bigram/trigram
 
 
-# PLOT for UNIGRAM/BIGRAM/TRIGRAM analysis
-
-# In[ ]:
-
-
+# Plot for UNIGRAM/BIGRAM/TRIGRAM analysis
 
 plt.figure(1,figsize=(16,4))
 plt.bar(pd1,pd2, color ='green',
