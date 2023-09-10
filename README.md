@@ -1,4 +1,4 @@
-#Twitter Sentiment Analysis Pipeline for E-Health Data
+# Twitter Sentiment Analysis Pipeline for E-Health Data
 This repository contains the code and resources for an end-to-end Twitter sentiment analysis pipeline designed to uncover insights, trends, and public sentiment related to E-Health using Twitter data.
 
 Overview
