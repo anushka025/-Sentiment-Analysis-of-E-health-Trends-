@@ -1,5 +1,5 @@
-# Complete_Sentiment_Analysis-of-twitter-data
-All the codes required for sentiment analysis- 
+•	Developed an end-to-end Twitter sentiment analysis pipeline to conduct e-health data analysis using Twitter hashtags to uncover insights, trends, and public sentiment.
+The pipeline includes:
 1.extracting tweets from twitter API
 2.pre-processing of data
 3.data visualization
