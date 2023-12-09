@@ -7,15 +7,16 @@ This project focuses on conducting sentiment analysis on Twitter data related to
 **Pipeline Components:**
 The pipeline includes the following key components:
 
-Tweet Extraction: We extract tweets from Twitter's API using specified hashtags. The code for this data scraping process is provided in this repository.
+1.Tweet Extraction: We extract tweets from Twitter's API using specified hashtags. The code for this data scraping process is provided in this repository.
 
-Data Preprocessing: The extracted data undergoes preprocessing, which includes text cleaning, tokenization, and removing stopwords. This step ensures the data is ready for analysis.
+2.Data Preprocessing: The extracted data undergoes preprocessing, which includes text cleaning, tokenization, and removing stopwords. This step ensures the data is ready for analysis.
 
-Data Visualization: We use data visualization techniques to create informative plots and charts that provide insights into the sentiment and trends in the E-Health data.
+3.Data Visualization: We use data visualization techniques to create informative plots and charts that provide insights into the sentiment and trends in the E-Health data.
 
-Classification/Tagging: Tweets are classified or tagged using two popular sentiment analysis classifiers: textblob and Vader. This step helps categorize tweets as positive, negative, or neutral.
+4.Classification/Tagging: Tweets are classified or tagged using two popular sentiment analysis classifiers: textblob and Vader. This step helps categorize tweets as positive, negative, or neutral.
 
-Machine Learning: You have the option to train machine learning algorithms on the labeled data to improve sentiment classification. Feel free to explore different ML models to enhance accuracy.
+5.Machine Learning: You have the option to train machine learning algorithms on the labeled data to improve sentiment classification. Feel free to explore different ML models to enhance accuracy.
+
 
 N-grams Analysis: Analyze the data using N-grams, which can reveal important phrases and combinations of words that contribute to the sentiment of the tweets.
 
